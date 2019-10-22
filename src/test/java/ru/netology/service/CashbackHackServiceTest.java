@@ -1,6 +1,8 @@
 package ru.netology.service;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,17 +15,21 @@ class CashbackHackServiceTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    void shouldReturn200IfAmount800() {
-        int actual = CashbackHackService.remain(800);
-        int expected = 200;
-        assertEquals(expected, actual);
+    @ParameterizedTest
+    @CsvFileSource(resources = "/DataForTests.csv", numLinesToSkip = 1)
+    void shouldReturnCorrectFigureIfAmountMoreThanZero(int amount, int expected, String message) {
+        int actual = CashbackHackService.remain(amount);
+        assertEquals(expected, actual, message);
     }
 
     @Test
-    void shouldReturn500IfAmount1500() {
-        int actual = CashbackHackService.remain(1500);
-        int expected = 500;
-        assertEquals(expected, actual);
+    void shouldThrowExceptionIfAmountLessThanZero() {
+        boolean thrown = false;
+        try {
+            CashbackHackService.remain(-100);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
     }
 }

@@ -1,0 +1,6 @@
+amount,expected,message
+800,200,Should be 200 for amount 800
+999,1,Should be 1 for amount 999
+2359,641,Should be 641 for amount 2359
+9500,500,Should be 500 for amount 9500
+999999999,1,Should be 1 for amount 999999999
