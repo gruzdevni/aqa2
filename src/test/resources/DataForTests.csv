@@ -4,3 +4,4 @@ amount,expected,message
 2359,641,Should be 641 for amount 2359
 9500,500,Should be 500 for amount 9500
 999999999,1,Should be 1 for amount 999999999
+1000,0,Should be 0 for amount 1000
